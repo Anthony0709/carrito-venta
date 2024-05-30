@@ -1,0 +1,68 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="card">
+    <h5 class="card-header">Usuario</h5>
+    <div class="card-body">
+        <!-- <a href="#" class="btn btn-success">Nuevo Usuario</a>
+        Button trigger modal -->
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="nuevoUsuario()">
+            Nuevo Usuario
+        </button>
+
+        <div class="card mb-4 mt-3">
+            <div class="card-body">
+                <table datatable class="table hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Estad0</th>
+                            <th>botones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listUsuario">
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.apellido }}</td>
+                            <td>{{ item.correo }}</td>
+                            <td>{{ item.activo }}</td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editarUsuario(item)">Modificar</button>
+                                <button (click)="deleteUser(item.idUsuario!)" type="button" class="btn btn-secondary btn-sm ms-2">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5 *ngIf="listUsuario.length == 0">No Hay productos para mostrar</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="exampleModal" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ operacion }}Usuarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <form [formGroup]="form" (ngSubmit)="addUser()">
+                        <input formControlName="nombre" type="text" class="form-control" placeholder="Ingrese nombre">
+                        
+                        <input formControlName="apellido" type="text" class="form-control mt-2" placeholder="Ingrese apellido">            
+                        
+                        <input formControlName="correo" type="text" class="form-control mt-2" placeholder="Ingrese correo">
+                        
+                        <input formControlName="clave" type="text" class="form-control mt-2" placeholder="Ingrese clave">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" data-bs-dismiss="modal" class="btn btn-outline-success mt-2">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
