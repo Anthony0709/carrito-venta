@@ -16,13 +16,19 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
 import { provideRouter } from '@angular/router';
+import { CategoriaComponent } from './componentes/categoria/categoria.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { MarcaComponent } from './componentes/marca/marca.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsuarioComponent,
     HomeComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    CategoriaComponent,
+    LoginComponent,
+    MarcaComponent
   ],
   imports: [
     BrowserModule,

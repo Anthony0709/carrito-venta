@@ -4,8 +4,8 @@
     <div class="card-body">
         <!-- <a href="#" class="btn btn-success">Nuevo Usuario</a>
         Button trigger modal -->
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="nuevoUsuario()">
-            Nuevo Usuario
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Agregar
         </button>
 
         <div class="card mb-4 mt-3">
@@ -21,19 +21,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of listUsuario">
-                            <td>{{ item.nombre }}</td>
-                            <td>{{ item.apellido }}</td>
-                            <td>{{ item.correo }}</td>
+                        <tr *ngFor="let item of ListaMarca">
+                            <td>{{ item.descripcion }}</td>
                             <td>{{ item.activo }}</td>
                             <td>
-                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editarUsuario(item)">Modificar</button>
-                                <button (click)="deleteUser(item.idUsuario!)" type="button" class="btn btn-secondary btn-sm ms-2">Delete</button>
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar</button>
+                                <button (click)="deleteUser(item.idMarca!)" type="button" class="btn btn-secondary btn-sm ms-2">Delete</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <h5 *ngIf="listUsuario.length == 0">No Hay productos para mostrar</h5>
+                <h5 *ngIf="ListaMarca.length == 0">No Hay productos para mostrar</h5>
             </div>
         </div>
     </div>
@@ -48,21 +46,13 @@
             </div>
             <div class="modal-body">
                 <div class="card-body">
-                    <form [formGroup]="form" (ngSubmit)="addUser()">
-                        <input formControlName="nombre" type="text" class="form-control" placeholder="Ingrese nombre">
-                        <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
+                    <form [formGroup]="form">
+                        <input formControlName="descripcion" type="text" class="form-control" placeholder="Ingrese descripcion">
+                        <span *ngIf="form.get('descripcion')?.hasError('required') && form.get('descripcion')?.touched">
                             El campo nombre es <strong>requerido</strong>
-                        </span>
-                        <input formControlName="apellido" type="text" class="form-control mt-2" placeholder="Ingrese apellido">            
-                        <span *ngIf="form.get('apellido')?.hasError('required') && form.get('apellido')?.touched">
-                            El campo apellido es <strong>requerido</strong>
-                        </span>
-                        <input formControlName="correo" type="text" class="form-control mt-2" placeholder="Ingrese correo">
-                        <span *ngIf="form.get('correo')?.hasError('required') && form.get('correo')?.touched">
-                            El campo correo es <strong>requerido</strong>
-                        </span>
-                        <input formControlName="clave" type="text" class="form-control mt-2" placeholder="Ingrese clave">
-                        <span *ngIf="form.get('clave')?.hasError('required') && form.get('clave')?.touched">
+                        </span>                        
+                        <input formControlName="activo" type="text" class="form-control mt-2" placeholder="Ingrese activo">
+                        <span *ngIf="form.get('activo')?.hasError('required') && form.get('activo')?.touched">
                             El campo clave es <strong>requerido</strong>
                         </span>
                         <div class="modal-footer">
